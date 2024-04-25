@@ -81,8 +81,7 @@ export const newPodObject = {
   outstanding_cost: 0,
   last_payment_at: null,
   os_template: 'ubuntu',
-  jupyter_token:
-    'ea49f6cf40864e512990745ff51fa5bca5e9499b071aced559a678fed9329861',
+  jupyter_token: 'ea49f6cf40864e512990745ff51.....',
   jupyter_url: 'https://None_8888.tromero.ai',
   ports: {
     jupyter: 8888,

@@ -8,6 +8,13 @@ import {
 } from '../mockData/k8sData';
 
 const getClusters = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
+
   const providerId = Math.floor(Math.random() * 5);
 
   res.json({
@@ -45,6 +52,12 @@ const getNodes = (req: Request, res: Response) => {
 };
 
 const getPods = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const user_id =
     req.headers.authorization &&
     parseInt(req.headers?.authorization?.split(' ')[1]);
@@ -58,6 +71,12 @@ const getPods = (req: Request, res: Response) => {
 };
 
 const getPodById = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const podId = parseInt(req.params.id);
   const pod = fakePods.find((p) => p && p.id == podId);
   if (!pod) {
@@ -68,6 +87,12 @@ const getPodById = (req: Request, res: Response) => {
 };
 
 const createPod = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const { node_id, gpu_count, os_template } = req.body;
   const user_id =
     req.headers.authorization &&
@@ -124,6 +149,12 @@ const createPod = (req: Request, res: Response) => {
 };
 
 const endPod = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const podId = parseInt(req.params.id);
   const pod = fakePods.find((p) => p && p.id == podId);
   if (!pod) {
@@ -151,6 +182,12 @@ const endPod = (req: Request, res: Response) => {
 };
 
 const updateCluster = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const clusterId = parseInt(req.params.id);
   const cluster = fakeClusters.find((c) => c && c.id == clusterId);
   if (!cluster) {
@@ -167,6 +204,12 @@ const updateCluster = (req: Request, res: Response) => {
 };
 
 const updateNode = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
   const nodeId = parseInt(req.params.id);
   const node = fakeNodes.find((n) => n && n.id == nodeId);
   if (!node) {
