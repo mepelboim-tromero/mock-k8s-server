@@ -1,4 +1,4 @@
-import { Cluster, Node, Pod } from './types';
+import { Cluster, Node, Pod } from '../types';
 
 let isInitialized = false;
 

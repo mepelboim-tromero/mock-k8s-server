@@ -5,7 +5,7 @@ import {
   fakePods,
   increaseIdForNodes,
   newPodObject,
-} from '../k8sData';
+} from '../mockData/k8sData';
 
 const getClusters = (req: Request, res: Response) => {
   const providerId = Math.floor(Math.random() * 5);
