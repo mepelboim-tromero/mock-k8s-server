@@ -18,7 +18,13 @@ const getClusters = (req: Request, res: Response) => {
 const getNodes = (req: Request, res: Response) => {
   const osType = req.query.template;
 
+  if (!osType) {
+    res.status(400).json({ error: { message: 'template is required' } });
+    return;
+  }
+
   let nodesToReturn = fakeNodes.filter((n) => n && n.available_gpus > 0);
+
   if (osType === 'fsdp') {
     nodesToReturn = nodesToReturn.filter(
       (n) =>
