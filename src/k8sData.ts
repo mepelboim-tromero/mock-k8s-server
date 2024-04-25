@@ -6,6 +6,10 @@ let idForNodes = 1;
 let idForClusters = 1;
 let idForPods = 1;
 
+export function increaseIdForNodes() {
+  return idForNodes++;
+}
+
 const gpuTypes = [
   'NVIDIA A100 80GB',
   'NVIDIA H100',
@@ -62,7 +66,7 @@ const nodeExtraStuff = {
   total_number_of_cores: '80',
 };
 
-const newPodObject = {
+export const newPodObject = {
   id: 1,
   buyer_id: 1,
   node_id: 1,
