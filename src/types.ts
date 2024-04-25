@@ -1,0 +1,73 @@
+export type Cluster = {
+  id: number;
+  provider_id: number;
+  ip_address: string;
+  config_data: string;
+  availability: string;
+  accessibility: string;
+  kyc_required: boolean;
+  created_at: string;
+  updated_at: string;
+  region: string;
+  nodes?: (Node | null | never)[];
+};
+
+export type Node = {
+  id: number;
+  cluster_id: number;
+  gpu_count: number;
+  price_per_gpu: number;
+  currency: string;
+  available_gpus: number;
+  availability: string;
+  accessibility: string;
+  gpu_type: string;
+  ip_address?: string;
+  os_type?: string;
+  created_at: string;
+  updated_at: string;
+  pods?: (Pod | null | never)[];
+  cpu_frequency: string;
+  cpu_name: string;
+  disk_size: string;
+  driver_version: string;
+  gpu_memory: string;
+  host: string;
+  host_ram: string;
+  host_swap: string;
+  network_download_speed: string;
+  network_upload_speed: string;
+  number_of_physical_cores: string;
+  os_name: string;
+  pcie_bandwidth: string;
+  pcie_generation: string;
+  pcie_lanes_per_gpu: string;
+  ports: string;
+  total_number_of_cores: string;
+  cluster?: Omit<Cluster, 'nodes'>;
+};
+
+export type Pod = {
+  id: number;
+  buyer_id: number;
+  node_id: number;
+  gpu_count: number;
+  currency: string;
+  state: string;
+  ready_at: string | null | undefined;
+  ended_at: string | null | undefined;
+  created_at: string;
+  updated_at: string;
+  total_cost: number;
+  outstanding_cost: number;
+  last_payment_at: string | null;
+  os_template: string;
+  jupyter_token: string;
+  jupyter_url: string;
+  ports: {
+    jupyter: number;
+    ssh: number;
+  };
+  ip_address: string | null;
+  node?: Omit<Node, 'pods'>;
+};
