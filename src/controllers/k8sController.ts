@@ -135,13 +135,13 @@ const createPod = (req: Request, res: Response) => {
 
   setTimeout(() => {
     const foundPod = fakePods.find((p) => p && p.id === pod.id);
-    console.log('Pod starting:', foundPod);
+    console.log('Pod started:', foundPod);
     if (foundPod) {
       foundPod.state = 'ready';
       foundPod.ready_at = new Date().toISOString();
       foundPod.updated_at = new Date().toISOString();
     }
-  }, Math.floor(Math.random() * 10000) + 5000);
+  }, Math.floor(Math.random() * 10000) + 10000);
 
   res
     .status(201)
@@ -170,12 +170,12 @@ const endPod = (req: Request, res: Response) => {
 
   setTimeout(() => {
     const foundPod = fakePods.find((p) => p && p.id === pod.id);
-    console.log('Pod ending:', foundPod);
     if (foundPod) {
       foundPod.state = 'ended';
       foundPod.ended_at = new Date().toISOString();
       foundPod.updated_at = new Date().toISOString();
     }
+    console.log('Pod ended:', foundPod);
   }, Math.floor(Math.random() * 10000) + 5000);
 
   res.json({ status: 'success', message: 'Reservation ending' });
