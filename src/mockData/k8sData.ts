@@ -35,7 +35,6 @@ const osTypeNames = {
   paddlepaddle: 'PaddlePaddle',
   hpc_scicomp: 'HPC/Sci-Comp',
   text_generation: 'No Code LLM',
-  no_code_llm: 'No-Code LLM',
   mamba: 'Mamba',
   lightning: 'Lightning AI',
 };
