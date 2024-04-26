@@ -236,13 +236,37 @@ const updateNode = (req: Request, res: Response) => {
   res.json({ status: 'success', message: 'Node updated' });
 };
 
+const createCluster = (req: Request, res: Response) => {
+  const isLogged = req.headers['is-logged-in'] === 'true';
+  const data = req.body;
+
+  if (!isLogged) {
+    res.status(401).json({ error: { message: 'Unauthorized' } });
+    return;
+  }
+
+  const newCluster = {
+    id: fakeClusters.length + 1,
+    ...data,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+  fakeClusters.push(newCluster);
+  res.status(201).json({
+    cluster: newCluster,
+    status: 'success',
+    message: 'Cluster created successfully',
+  });
+};
+
 export default {
   getClusters,
+  createCluster,
+  updateCluster,
   getNodes,
+  updateNode,
   getPods,
   getPodById,
   createPod,
   endPod,
-  updateCluster,
-  updateNode,
 };
