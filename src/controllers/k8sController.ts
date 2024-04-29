@@ -135,13 +135,13 @@ const createPod = (req: Request, res: Response) => {
 
   setTimeout(() => {
     const foundPod = fakePods.find((p) => p && p.id === pod.id);
-    console.log('Pod started:', foundPod);
     if (foundPod) {
       foundPod.state = 'ready';
       foundPod.ready_at = new Date().toISOString();
       foundPod.updated_at = new Date().toISOString();
+      console.log('Pod started:', foundPod);
     }
-  }, Math.floor(Math.random() * 10000) + 10000);
+  }, Math.floor(Math.random() * 10000) + 5000);
 
   res
     .status(201)
