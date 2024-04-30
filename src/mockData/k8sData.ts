@@ -68,9 +68,9 @@ const nodeExtraStuff = {
 export const newPodObject = {
   id: 1,
   buyer_id: 1,
+  currency: 'usd',
   node_id: 1,
   gpu_count: 1,
-  currency: 'usd',
   state: 'starting',
   ready_at: null,
   ended_at: null,
@@ -234,7 +234,7 @@ function createPods({
         state === 'ready' || state === 'ending' || state === 'ended'
           ? ready_at!.toISOString()
           : null,
-      ended_at: ended_at?.toISOString(),
+      ended_at: ended_at?.toISOString() || null,
       created_at: created_at.toISOString(),
       updated_at: updated_at.toISOString(),
       total_cost,
