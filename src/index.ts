@@ -5,14 +5,18 @@ import router from './router';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import repl from 'repl';
+import helmet from 'helmet';
+import csurf from 'csurf';
 import { fakeClusters, fakeNodes, fakePods } from './mockData/k8sData';
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.use(helmet());
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.use(csurf({ cookie: true }));
 
 app.use('/', router);
 
